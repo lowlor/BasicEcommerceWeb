@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/backEndStyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>Document</title>
+</head>
+<body>
+    <div class="addProductContainer">
+        <input type="file" class="imgInput" name="" id="">
+        <input type="text" class="productName">
+        <input type="number" class="productPrice" name="" id="">
+        <button class="addProductBtn">Enter</button>
+
+
+    </div>
+    <div class="shippingContainer">
+
+        <div class="shippingIdOption">
+            <p>Select Customer Shipping</p>
+            <select name="" id="">
+                <option value="1">Id 1</option>
+                <option value="2">Id 2</option>
+            </select>
+    
+        </div>
+
+        <p class="currStatus">Current Status : </p>
+        <select class="statusOption" clname="" id="">
+            <option value="Packed">Packed</option>
+            <option value="Delivering">Delivering</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+
+        <button class="changeShippingStatusBtn">Change</button>
+    </div>
+    <div class="checkSlip">
+        <p>select Customer</p>
+        <select name="" id="">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+        <p>select Order</p>
+        <select name="" id="">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        </select>
+        <button class="check"></button>
+        <p class="slipText">Slip</p>
+        <img class="slipImg" src="" alt="">
+    </div>
+    <script type="module" src="/scripts/backEndControl.js"></script>
+</body>
+</html>

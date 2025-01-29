@@ -1,0 +1,103 @@
+body{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.containerHead{
+    padding: 12px 10px;
+    background-color: green;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,p{
+    margin: 0;
+    padding: 0;
+}
+
+.containerSearch{
+    display: flex;
+    gap: 0;
+}
+
+.search, .searchBox{
+    border: 0;
+    padding: 10px;
+}
+
+.search{
+    color: #fff;
+    background-color: #000;
+
+}
+
+.searchBox{
+    max-width: 300px;
+    width: 100px;
+}
+
+.headImg{
+    height: 40px;
+}
+
+.itemImg{
+    height: 100px;
+}
+
+.orderContainer{
+    background-color: #fff;
+    border: 1px solid #000;
+    margin: 20px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.orderContainerText{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.orderItems{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.orderItem{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 7px 10px 0 10px;
+
+}
+
+.itemImg{
+    margin-left: 20px;
+}
+.orderItemText{
+    padding-left: 30px;
+    width: 100%;
+}
+
+.orderItemTextDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+
+}
+
+.productName{
+    margin-bottom: 15px;
+
+}

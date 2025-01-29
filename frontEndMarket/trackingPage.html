@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/trackingPageStyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="containerHead">
+        <a href="mainPage.html">
+        <img class="headImg" src="images/amazonLogo.png" alt="">
+        </a>
+        
+        <div class="containerSearch">
+            <input class="searchBox" type="text" placeholder="enter product name">
+            <button class="search">
+                <i class="fa-solid fa-search"></i>
+            </button>
+        </div>
+        <a href="orderPage.html">Order</a>
+        <a href="payRequestPage.html">Request</a>
+        <div class="containerCart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p class="cartNumber">0</p>
+            
+        </div>
+    </div>
+    <div class="bodyContainer">
+        <h1>Tracking</h1>
+        <div class="trackingContainer">
+            <div class="trackingHeadContainer">
+                <h2 class="statusText">Delivering</h2>
+                <div class="trackingText2">
+                    <h2 class="orderNum">Order number : 1</h2>
+                    <h2 class="deliverTime">Estimated Delivery Time : 23 May 2034</h3>    
+                </div>    
+            </div>
+            <div class="deliveryVisual">
+                <div class="node"></div>
+                <div class="line"></div>
+                <div class="node"></div>
+                <div class="line"></div>
+                <div class="node"></div>
+            </div>
+            <div class="deliveryVisualText">
+                <div class="nodeText">Packing</div>
+                <div class="space"></div>
+                <div class="nodeText">Delivering</div>
+                <div class="space"></div>
+                <div class="nodeText">Delivered</div>
+            </div>
+            
+            <div class="productContainer">
+                <img class="productImg" src="/images/pixel.jpg" alt="">
+                <div class="productText">
+                    <h3 class="productName">Pixel</h3>
+                    <div class="productTextSecondary">
+                        <p class="quantityText">Quantity : 12</p>
+                        <p class="priceText"><i class="fa-solid fa-dollar"></i>20000</p>        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const url = new URL(window.location.href);
+        console.log(url.searchParams.get('orderId'));
+        console.log(url.searchParams.get('productId'));
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="module" src="/scripts/trackingControl.js"></script>
+</body>
+</html>

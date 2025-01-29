@@ -1,0 +1,138 @@
+body{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightgrey;
+}
+
+.containerHead{
+    padding: 12px 10px;
+    background-color: green;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,p{
+    margin: 0;
+    padding: 0;
+}
+
+.containerSearch{
+    display: flex;
+    gap: 0;
+}
+
+.search, .searchBox{
+    border: 0;
+    padding: 10px;
+}
+
+.search{
+    color: #fff;
+    background-color: #000;
+
+}
+
+.searchBox{
+    max-width: 300px;
+    width: 100px;
+}
+
+.containerCart{
+    display: flex;
+    align-items: center;
+}
+.headImg{
+    height: 40px;
+}
+
+.cartContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+
+    gap: 30px;
+}
+
+.itemContainer, .conclusionContainer{
+    background-color: #fff;
+} 
+
+.itemContainer{
+    padding: 10px;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    
+    width: 90%;
+
+}
+
+.itemContainerHead{
+    padding-bottom: 10px ;
+
+}
+
+.items{
+    height: auto;
+}
+
+.item{
+    padding: 10px 0;
+    border-top: 1px solid #000;
+    display: flex;
+    flex-direction: column
+
+}
+.itemReal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+.conclusionContainer{
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.conclusionPriceDetail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.conclusionBtn{
+    width: 50%;
+    height: 40px;
+    border: 0;
+    border-radius: 20px;
+
+}
+
+
+.conclusionBtn:active{
+    background-color: #000;
+    color: #fff;
+}
+.productImg{
+    max-width: 100%;
+    height: 100px;
+}
+
+.quantity-input{
+    width: 30px;
+}
+
+.quantity-input, .save-quantity-link{
+    display: none;
+}

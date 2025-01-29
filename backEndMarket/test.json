@@ -1,0 +1,27 @@
+{
+    "id": "ORD12345",
+    "userId" : "p1",
+    "orderTime": "2025-01-19T10:30:00",
+    "orderTimeDate": "2025-01-19",
+    "totalCostCent": 12500,
+    "products" : [
+        {
+            "orderId": "ORD12345",
+            "id": "ORDDET123",
+            "productId": "PROD001",
+            "quantity": 2,
+            "estimatedDeliveryTime": "2025-01-22T15:00:00",
+            "estimatedDeliveryTimeDate": "2025-01-22"
+          },
+          {
+            "orderId": "ORD12345",
+            "id": "ORDDET124",
+            "productId": "PROD002",
+            "quantity": 1,
+            "estimatedDeliveryTime": "2025-01-23T12:00:00",
+            "estimatedDeliveryTimeDate": "2025-01-23"
+          }
+    ],
+    "status": "Pending",
+    "payStatus": 0
+}

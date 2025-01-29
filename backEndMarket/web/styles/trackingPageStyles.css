@@ -1,0 +1,143 @@
+body{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightgrey;
+}
+
+.containerHead{
+    padding: 12px 10px;
+    background-color: green;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+h1,h2,h3,p{
+    margin: 0;
+    padding: 0;
+}
+
+.containerSearch{
+    display: flex;
+    gap: 0;
+}
+
+.search, .searchBox{
+    border: 0;
+    padding: 10px;
+}
+
+.search{
+    color: #fff;
+    background-color: #000;
+
+}
+
+.searchBox{
+    max-width: 300px;
+    width: 100px;
+}
+
+.headImg{
+    height: 40px;
+}
+
+.productImg{
+    height: 120px;
+}
+
+.trackingContainer{
+    background-color: #fff;
+    margin: 7px 20px;
+    border: 1px solid #000;
+
+}
+.trackingText2{
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderNum, .deliverTime{
+    font-size: 16px;
+    
+}
+
+.trackingHeadContainer{
+    margin: 0 5px;
+}
+
+.deliveryVisual{
+    
+    display: flex;
+    padding: 20px 20px 1px 20px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.deliveryVisualText{
+    
+    display: flex;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.space{
+    width: 175px;
+
+}
+
+.node{
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.nodeText{
+    text-align: center;
+}
+
+
+.line{
+    width: 200px;
+    height: 2px;
+    background-color: rgb(148, 148, 148);
+    
+}
+
+.productContainer{
+    border: 1px solid #000;
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+    padding: 10px 10px 10px 10px;
+
+
+}
+
+.productText{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+}
+
+.productTextSecondary{
+    
+    flex-direction: row;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+}
