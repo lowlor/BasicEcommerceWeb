@@ -1,4 +1,4 @@
-import {removeFromCart,getAllCartQuantity, updataQuantity, updateDelivery, fetchCartInfo} from "../datas/carts.js";
+import {fetchCart} from "../datas/carts.js";
 import { formatCurrency } from "./utils/money.js";
 import {getDate, getDateDateFormat} from "./utils/date.js"
 import {deliveryOption, getDelivery} from "../datas/deliveryOption.js";
@@ -15,22 +15,30 @@ export async function updatePrice(userID){
     tax = 0;
     shipping =0;
     totalPrice =0;
-    const cart = await fetchCartInfo();
-    cart.forEach(function(item){
-        let product = item;
+    const cart = await fetchCart(userID);
+    for(const item of cart.products){
+        let product = await getProduct(item.productId);
         totalItemPrice += parseInt(product.priceCents)*item.quantity;
         
       
-        let cost = getDelivery(item.deliveryOption);
-        shipping += cost.price;
-    })   
+        console.log(item);
+        
+        
+    }
+    let cost = getDelivery(cart.deliveryOptionId);
+    shipping += cost.price;
     console.log("hello",shipping);
     console.log(totalItemPrice);
 
 
     let html;
 
-    let textToTake = `<div class="conclusionPriceDetail">
+    let textToTake = `
+            <p class="deliveryOption">Choose a delivery option</p>
+            <select name="quantity" id="quantity" class="quantityBox">
+                ${addOption(cart.deliveryOptionId)}
+            </select>
+            <div class="conclusionPriceDetail">
                 <h3 class="subTotal">subtotal (2 items) :</h2>
                 <p class="totalItemPrice"><i class="fa-solid fa-dollar"></i>${formatCurrency(totalItemPrice)}</p>
             </div>
@@ -48,9 +56,51 @@ export async function updatePrice(userID){
             </div>
             <button class="conclusionBtn">proceed to checkout</button>`
 
+    function addOption(item){
+        let html = '';
+        let number = 1;
+
+        console.log(item)
+        console.log("this in addoption")
+        deliveryOption.forEach((currOption)=>{
+            if(currOption.deliveryId == item){
+                html+=    `
+            <option value="${currOption.deliveryId}" selected=true>${currOption.deliveryName}</option>
+            `
+            }else{
+                html+=    `
+                <option value="${currOption.deliveryId}">${currOption.deliveryName}</option>
+                `
+            }
+            
+            number++;
+        })
+
+        return html;
+    }
+        
+    
     document.querySelector('.conclusionContainer').innerHTML = textToTake;
 
     console.log(document.querySelector('.conclusionContainer'));
+
+    const optionDeli = document.querySelector('#quantity');
+    
+    optionDeli.addEventListener('change',async ()=>{
+            console.log(optionDeli.value);
+            console.log(typeof optionDeli.value);
+            
+            
+            await cart.updateDelivery(optionDeli.value);
+            
+            
+            console.log('----------------------update delivery');
+            
+            await updatePrice(userID);
+            console.log('----------------------update price');
+            
+    })
+    
 
     document.querySelector('.conclusionBtn').addEventListener('click',()=>{
         //const response = await fetch('https:\\supersimplebackend.dev/orders', {

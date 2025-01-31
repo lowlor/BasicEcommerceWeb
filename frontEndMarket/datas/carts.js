@@ -5,10 +5,12 @@ class Cart{
     deliveryOptionId;
 
     constructor(cartDetail){
+        console.log(cartDetail);
+        
         this.id = cartDetail.id;
         this.userId = cartDetail.userId;
         this.products = cartDetail.products;
-        this.deliveryOptionId = cartDetail.deliveryOptionId;
+        this.deliveryOptionId = cartDetail.deliveryOption;
     }
 
     updataQuantity(productId, newQuantity){
@@ -21,20 +23,11 @@ class Cart{
     }
 
     
-    updateDelivery(type){
+    async updateDelivery(type){
         this.deliveryOptionId = type;
-        this.updateCart();
-    }
-
-
-    //complete implement
-    async updateCartProduct(productIdToPut, newQuantity){
-        console.log(productIdToPut, newQuantity);
-        
         try {
-            const {data} = await axios.put(`http://localhost:5000/api/cartDetail/${this.id}`,{
-                productId : productIdToPut,
-                quantity : newQuantity
+            const {data} = await axios.put(`http://localhost:5000/api/cart/${this.id}`,{
+                deliveryOptionId : this.deliveryOptionId
             });
             console.log(data.info)
             if(data.status){
@@ -49,11 +42,15 @@ class Cart{
         }
     }
 
+
     //complete implement
-    async updateCart(){
+    async updateCartProduct(productIdToPut, newQuantity){
+        console.log(productIdToPut, newQuantity);
+        
         try {
-            const {data} = await axios.put(`http://localhost:5000/api/cart/${this.id}`,{
-                deliveryOptionId : this.deliveryOptionId
+            const {data} = await axios.put(`http://localhost:5000/api/cartDetail/${this.id}`,{
+                productId : productIdToPut,
+                quantity : newQuantity
             });
             console.log(data.info)
             if(data.status){

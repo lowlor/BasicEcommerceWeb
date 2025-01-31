@@ -16,8 +16,8 @@ const loginAuth = async()=>{
     
     
     if(isAuth.status){
-        updateOrderSection();
-        updatePrice(isAuth.info.id);
+        await updateOrderSection(isAuth.info.id);
+        await updatePrice(isAuth.info.id);
     }else{
         //window.location.href = "loginPage.html";
     }

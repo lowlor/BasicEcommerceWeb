@@ -1,11 +1,12 @@
 import { fetchOrders} from "../datas/order.js";
 import { getProduct, products } from "../datas/products.js";
-import { getAllCartQuantity } from "../datas/carts.js";
+import { fetchCart} from "../datas/carts.js";
 import { verifyAuth } from "./utils/auth.js";
 let html ='';
 
 const initial =  async (userID) => {
-    document.querySelector('.cartNumber').innerHTML = getAllCartQuantity();
+    const cart = await fetchCart(userID);
+    document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
 
     const orders = await fetchOrders(userID);
     console.log(orders);
