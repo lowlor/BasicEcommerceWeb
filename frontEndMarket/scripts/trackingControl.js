@@ -1,6 +1,6 @@
 import { getProduct } from "../datas/products.js";
 import { getOrder } from "../datas/order.js";
-import { getAllCartQuantity } from "../datas/carts.js";
+import { fetchCart } from "../datas/carts.js";
 import { verifyAuth } from "./utils/auth.js";
 const url = new URL(window.location.href);
 
@@ -8,10 +8,10 @@ async function initial(customerId){
     const order = await getOrder(url.searchParams.get('orderId'),customerId);
     console.log(order);
 
-    
+    const cart = await fetchCart(customerId); 
     console.log(order.products);
 
-    document.querySelector('.cartNumber').innerHTML = getAllCartQuantity();
+    document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
 
     //<h2 class="deliverTime">Estimated Delivery Time : ${orderProduct.estimatedDelive}</h3>    
 

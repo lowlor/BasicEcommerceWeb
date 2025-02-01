@@ -8,7 +8,11 @@ export async function auth(username,password){
         console.log(data);
         console.log(data.status);
         
-        if(data.status){
+        if(data.status=='2'){
+            console.log('return 1');
+            alert('logIn completed')    
+            return 2;
+        }else if(data.status=='1'){
             console.log('return 1');
             alert('logIn completed')    
             return 1;
@@ -75,8 +79,7 @@ export async function verifyAuth(){
         console.log(data);
         
         if(data.status){
-            console.log('return 1');
-            alert('auth coomplete')    
+            console.log('return 1');   
             return {status:1,
                 info: data.info
             };

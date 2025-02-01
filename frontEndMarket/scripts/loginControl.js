@@ -10,10 +10,14 @@ document.querySelector(".loginBtn").addEventListener("click",async ()=>{
     console.log(check);
 
     
-    if(check){
+    if(check == 1){
         console.log('enter home');
         
         window.location.href = "../mainPage.html";
+    }if(check == 2){
+        console.log('enter back end');
+        
+        window.location.href = "../backEndPage.html";
     }else{     
         console.log('gogo');
         

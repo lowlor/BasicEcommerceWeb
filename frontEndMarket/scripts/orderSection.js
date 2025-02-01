@@ -66,10 +66,10 @@ export async function updateOrderSection(userId){
 
     document.querySelector('.items').innerHTML = cartHtml;
 
-    document.querySelectorAll(".deleteBtn").forEach(function(link){
-        link.addEventListener('click',function(){
+    document.querySelectorAll(".deleteBtn").forEach(async function(link){
+        link.addEventListener('click', async function(){
             const productId = link.dataset.productId;
-            cart.removeFromCart(productId);
+            await cart.removeProduct(productId);
             console.log(cart)
             const container = document.querySelector(`.js-itemOf${productId}`);
             container.remove();
@@ -78,7 +78,7 @@ export async function updateOrderSection(userId){
 
             console.log(cart);
             console.log("deleteetetete");
-            updatePrice();
+            updatePrice(userId);
         })
     })
 
@@ -100,22 +100,25 @@ export async function updateOrderSection(userId){
 
 
     document.querySelectorAll('.link-primary').forEach((link)=>{
-        link.addEventListener('click',()=>{
+        link.addEventListener('click',async ()=>{
             const productId = link.dataset.productId;
             console.log(productId);
             const newQuantity = document.querySelector(`.quantity-input[data-product-id="${productId}"]`).value;
-            cart.updataQuantity(productId, parseInt(newQuantity));
+            await cart.updateCartProduct(productId, parseInt(newQuantity));
 
             //update
             document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
 
-            updatePrice();
+
+            
+            updatePrice(userId);
 
             document.querySelector(`#upBtn-${productId}`).style.display = 'initial';
             document.querySelector(`.quantity-input[data-product-id="${productId}"]`).style.display = 'none';
             document.querySelector(`.link-primary[data-product-id="${productId}"]`).style.display = 'none';
 
-            updateOrderSection();
+            updateOrderSection(userId);
+            
         })
     })
 }

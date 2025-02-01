@@ -38,6 +38,8 @@ const initial =  async (userID) => {
 
     function orderStatusSplit(order){
         console.log('enter to orderstatussplit');
+        console.log(order);
+        
         
         if(order.status === "Waiting Comfirming Payment" & order.payStatus===0){
                 
@@ -55,7 +57,7 @@ const initial =  async (userID) => {
             console.log('enter this');
             
             return `<div id="trackDelivery${order.id}">
-                <p class="deliveryDate">Estimated Delivery : unknown</p>
+                <p class="deliveryDate">Estimated Delivery : ${order.estimatedDeliveryTime}</p>
                 <a href=trackingPage.html?orderId=${order.id}>
                     <button class="checkStatus">check</button>    
                 </a>
@@ -66,8 +68,14 @@ const initial =  async (userID) => {
     }
     async function productHtml(itemArray,id,status,payStatus){
         let html ='';
+        console.log(itemArray);
+        
         for(const item of itemArray){
+                console.log(item.productId);
+                
                 const product = await getProduct(item.productId)
+                console.log(product);
+                
                 if(status === "Waiting Comfirming Payment" & payStatus===0){
                     console.log("enter if one");
 

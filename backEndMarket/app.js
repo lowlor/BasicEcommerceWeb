@@ -56,9 +56,9 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const endpoint = req.originalUrl;
         if (endpoint.includes('/product/addImg')) {
-            cb(null, path.join(__dirname, 'public/images/products')); // Product images folder
+            cb(null, path.join(__dirname, 'public/images/products')); 
         } else if (endpoint.includes('/order/slip')) {
-            cb(null, path.join(__dirname, 'public/images/slips')); // Slips folder
+            cb(null, path.join(__dirname, 'public/images/slips')); 
         } else {
             cb(new Error('Unknown upload destination'), null);
         }
@@ -117,16 +117,30 @@ app.post('/api/auth',(req,res)=>{
                 console.log('pass compare');
                 
                 if(match){
-                    console.log(result[0].id);
+                    console.log('dededededeeeeeeeeeeeeeeeeeeeeeeeeeeeee',result[0]);
             
                     req.session.user = { id : result[0].id , username : data.username};
 
                     console.log(req.session);
             
-                    return res.status(200).send({
-                        status : 1,
-                        info : 'auth is valid',
-                    });
+                    
+                    if(result[0].role === 'admin'){
+                        console.log('-------------------------------adminlogin-----------------------------------------');
+                        
+                        return res.status(200).send({
+                            status : 2,
+                            info : 'auth is valid',
+                        });
+                    }else{
+                        console.log('-----------------------------------user lonign-------------------------');
+                        
+                        return res.status(200).send({
+                            status : 1,
+                            info : 'auth is valid',
+                        });
+                    }
+                    
+                    
                 }else{
                     console.log('incorrect username');
                     
@@ -292,7 +306,7 @@ app.post('/api/logout', (req, res) => {
                 info: 'error logging out',
             });
         } else {
-            res.clearCookie('connect.sid'); // Adjust cookie name as per your session configuration
+            res.clearCookie('connect.sid'); 
             return res.status(200).send({
                 status: 1,
                 info: 'log out completed',
@@ -428,9 +442,9 @@ app.post('/api/order', async (req,res)=>{
     console.log(data);
 
     connection.query(
-        `INSERT INTO \`order\` (id,userId, orderTime, orderTimeDate, totalCostCent, status, payStatus)
-         VALUES (?,?,?,?,?,?,?)`,
-        [data.id,data.userId,data.orderTime,data.orderTimeDate,data.totalCostCent,data.status,data.payStatus],
+        `INSERT INTO \`order\` (id,userId, orderTime, orderTimeDate, estimatedDeliveryTime, estimatedDeliveryTimeDate, totalCostCent, status, payStatus)
+         VALUES (?,?,?,?,?,?,?,?,?)`,
+        [data.id,data.userId,data.orderTime,data.orderTimeDate,data.estimatedDeliveryTime,data.estimatedDeliveryTimeDate,data.totalCostCent,data.status,data.payStatus],
         (err,result,field)=>{
             if (err){
                 console.log(err);
@@ -442,10 +456,10 @@ app.post('/api/order', async (req,res)=>{
             console.log('update complete');
             const promises = data.products.map((current)=>{
                 return new Promise((resolve,reject)=>{
-                    connection.query(`INSERT INTO \`orderdetail\`(orderId, id, productId, quantity, estimatedDeliveryTime, estimatedDeliveryTimeDate)
+                    connection.query(`INSERT INTO \`orderdetail\`(orderId, id, productId, quantity)
                          VALUES 
-                         (?,?,?,?,?,?)`,
-                        [data.id,current.id,current.productId,current.quantity,current.estimatedDeliveryTime,current.estimatedDeliveryTimeDate],
+                         (?,?,?,?)`,
+                        [data.id,current.id,current.productId,current.quantity],
                     (err,result,field)=>{
                         if(err){
                             reject(err);

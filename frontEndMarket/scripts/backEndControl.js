@@ -1,6 +1,7 @@
 import { fetchOrders, getOrder } from "../datas/order.js";
 import { addProduct } from "../datas/products.js";
 import { fetchUser } from "../datas/user.js";
+import { logout } from "./utils/auth.js";
 //import { getOrder, orders } from "../datas/order.js";
 
 let html = '';
@@ -14,7 +15,17 @@ document.querySelector(".addProductBtn").addEventListener("click",()=>{
     addProduct(productNameToPut.value,productPriceCentToPut.value,imgToPut);
 });
 
-
+document.querySelector('#logOutBtn').addEventListener('click',async ()=>{
+    const logoutOk = await logout();
+    console.log('go log out');
+    
+    if (logoutOk) {
+        alert('log out complete');
+        window.location.href = 'loginPage.html';
+    }else{
+        alert('log out error');
+    }
+})
 
 async function customerSection(){
     let html = '';

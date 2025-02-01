@@ -8,6 +8,8 @@ class Order{
     userId;
     orderTime;
     orderTimeDate;
+    estimatedDeliveryTime;
+    estimatedDeliveryTimeDate;
     totalCostCent;
     products;
     status;
@@ -20,6 +22,8 @@ class Order{
         this.userId= details.userId;
         this.orderTime=details.orderTime;
         this.orderTimeDate= details.orderTimeDate;
+        this.estimatedDeliveryTime = details.estimatedDeliveryTime;
+        this.estimatedDeliveryTimeDate = details.estimatedDeliveryTimeDate;
         this.totalCostCent=details.totalCostCent;
         this.products=details.products;
         this.status=details.status;
@@ -98,6 +102,8 @@ class Order{
                 userId: this.userId,
                 orderTime: this.orderTime,
                 orderTimeDate: this.orderTimeDate,
+                estimatedDeliveryTime: this.estimatedDeliveryTime,
+                estimatedDeliveryTimeDate : this.estimatedDeliveryTimeDate,
                 totalCostCent: this.totalCostCent,
                 products: this.products,
                 status: this.status,
@@ -140,7 +146,7 @@ export const fetchOrders = async (userID)=>{
     }
 }
 
-export async function addOrder(totalCostCent,cart,userID){
+export async function addOrder(totalCostCent,cart,userID,estimatedDeliveryTime,estimatedDeliveryTimeDate){
 
     const a = await getTotalOrder();
     const id = (a+1).toString();
@@ -150,6 +156,8 @@ export async function addOrder(totalCostCent,cart,userID){
             userId : userID,
             orderTime : getDateNow(),
             orderTimeDate : getDateNowDateFormat(),
+            estimatedDeliveryTime : estimatedDeliveryTime,
+            estimatedDeliveryTimeDate : estimatedDeliveryTimeDate,
             totalCostCent: totalCostCent,
             products:cart,
             status : "Waiting Comfirming Payment",

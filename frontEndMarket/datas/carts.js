@@ -13,15 +13,6 @@ class Cart{
         this.deliveryOptionId = cartDetail.deliveryOption;
     }
 
-    updataQuantity(productId, newQuantity){
-        products.forEach((item)=>{
-            if(item.productId===productId){
-                item.quantity = newQuantity;
-            }
-        })
-        this.updateCartProduct(productId, newQuantity);
-    }
-
     
     async updateDelivery(type){
         this.deliveryOptionId = type;
@@ -46,6 +37,12 @@ class Cart{
     //complete implement
     async updateCartProduct(productIdToPut, newQuantity){
         console.log(productIdToPut, newQuantity);
+
+        this.products.forEach((item)=>{
+            if(item.productId===productIdToPut){
+                item.quantity = newQuantity;
+            }
+        })
         
         try {
             const {data} = await axios.put(`http://localhost:5000/api/cartDetail/${this.id}`,{
@@ -129,20 +126,6 @@ class Cart{
         }
     
     
-    }
-    removeFromCart(productId){
-        const newCart = [];
-        
-        this.products((product)=>{
-            if (product.id !== productId){
-                this.products.push(product);
-            }
-        }
-        );
-    
-        cart = newCart;
-    
-        updateCart();
     }
     
     getAllCartQuantity(){

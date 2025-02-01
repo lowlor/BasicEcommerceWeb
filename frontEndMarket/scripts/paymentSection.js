@@ -16,6 +16,7 @@ export async function updatePrice(userID){
     shipping =0;
     totalPrice =0;
     const cart = await fetchCart(userID);
+    const totallItemNumber = await cart.getAllCartQuantity();
     for(const item of cart.products){
         let product = await getProduct(item.productId);
         totalItemPrice += parseInt(product.priceCents)*item.quantity;
@@ -39,7 +40,7 @@ export async function updatePrice(userID){
                 ${addOption(cart.deliveryOptionId)}
             </select>
             <div class="conclusionPriceDetail">
-                <h3 class="subTotal">subtotal (2 items) :</h2>
+                <h3 class="subTotal">subtotal (${totallItemNumber} items) :</h2>
                 <p class="totalItemPrice"><i class="fa-solid fa-dollar"></i>${formatCurrency(totalItemPrice)}</p>
             </div>
             <div class="conclusionPriceDetail">
@@ -117,20 +118,15 @@ export async function updatePrice(userID){
         //console.log(order);
         let cartToPut = [];
         let countId =1;
-        cart.forEach((item)=>{
-            const dateToPut = getDelivery(item.deliveryOption);
-            console.log(dateToPut);
-            
+        cart.products.forEach((item)=>{            
             cartToPut.push({
                 id: countId.toString(),
-                productId : item.id,
+                productId : item.productId,
                 quantity: item.quantity,
-                estimatedDeliveryTime : getDate(dateToPut.time),
-                estimatedDeliveryTimeDate : getDateDateFormat(dateToPut.time)
             })
             countId++;
         })
-        addOrder(totalItemPrice+(totalItemPrice*0.07)+shipping,cartToPut,userID);
+        addOrder(totalItemPrice+(totalItemPrice*0.07)+shipping,cartToPut,userID,getDate(cost.time), getDateDateFormat(cost.time));
 
         alert("Complete! Please proceed to order tab to pay your order");
     })
