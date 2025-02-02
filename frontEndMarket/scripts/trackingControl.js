@@ -4,7 +4,9 @@ import { fetchCart } from "../datas/carts.js";
 import { verifyAuth } from "./utils/auth.js";
 const url = new URL(window.location.href);
 
-async function initial(customerId){
+async function initial(customerId,username){
+    document.querySelector('.userInfo').innerHTML = "Welcome back..."+username;
+
     const order = await getOrder(url.searchParams.get('orderId'),customerId);
     console.log(order);
 
@@ -13,7 +15,6 @@ async function initial(customerId){
 
     document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
 
-    //<h2 class="deliverTime">Estimated Delivery Time : ${orderProduct.estimatedDelive}</h3>    
 
     const productSectionHtml = await productHtml(order);
     let html = `
@@ -109,7 +110,7 @@ const loginAuth = async()=>{
         console.log('goto main');
         console.log(isAuth.info);
         
-        initial(isAuth.info.id);
+        initial(isAuth.info.id,isAuth.info.username);
     }else{
         window.location.href = "loginPage.html";
     }

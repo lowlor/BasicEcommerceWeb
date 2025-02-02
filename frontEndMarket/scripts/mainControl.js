@@ -5,7 +5,8 @@ import { logout, verifyAuth } from "./utils/auth.js";
 
 
 
-const initial = async(userId)=>{
+const initial = async(userId,username)=>{
+    document.querySelector('.userInfo').innerHTML = "Welcome back..."+username
     let productHtml = "";
     let cartNumber = document.querySelector(".cartNumber");
     let cart = await fetchCart(userId);
@@ -87,7 +88,7 @@ const loginAuth = async()=>{
         console.log('goto main');
         console.log(isAuth.info);
         
-        initial(isAuth.info.id);
+        initial(isAuth.info.id,isAuth.info.username);
     }else{
         window.location.href = "loginPage.html";
     }

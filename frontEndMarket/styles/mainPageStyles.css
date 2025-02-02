@@ -1,12 +1,15 @@
 body{
-    font-family: "Montserrat", sans-serif;
+    font-family: "Roboto", serif;
+    color: #6D1058;
     margin: 0;
     padding: 0;
+    background-color: lightgrey;
 }
+
 
 .containerHead{
     padding: 12px 10px;
-    background-color: green;
+    background-color:  #AAAACC ;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -29,15 +32,22 @@ h1,h2,h3,p{
     padding: 10px;
 }
 
+.searchBox{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+}
 .search{
     color: #fff;
-    background-color: #000;
+    background-color: #6D1058;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    transition: .5s;
 
 }
 
 .searchBox{
-    max-width: 300px;
-    width: 100px;
+    width: 400px;
 }
 
 .containerCart{
@@ -70,4 +80,32 @@ h1,h2,h3,p{
 .productImg{
     max-width: 100%;
     height: 100px;
+}
+
+.leftSection{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.barBtn{
+    font-family: "Roboto", serif;
+    padding: 7px 5px ;
+    color: #fff;
+    background-color: #6D1058;
+    border: 1px solid #AAAACC;
+    border-radius: 8px;
+    font-weight: 300;
+    transition: .5s;
+}
+
+.barBtn:hover{
+    background-color: #a86599;
+}
+.search:hover{
+    background-color: #a86599;
+}
+.userInfo{
+    font-size: 1.2rem;
 }

@@ -16,6 +16,7 @@ const loginAuth = async()=>{
     
     
     if(isAuth.status){
+        document.querySelector('.userInfo').innerHTML = "Welcome back..."+isAuth.info.username;
         await updateOrderSection(isAuth.info.id);
         await updatePrice(isAuth.info.id);
     }else{

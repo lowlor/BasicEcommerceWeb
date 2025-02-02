@@ -11,6 +11,7 @@ let shipping =0;
 let totalPrice =0;
 
 export async function updatePrice(userID){
+    
     totalItemPrice = 0;
     tax = 0;
     shipping =0;

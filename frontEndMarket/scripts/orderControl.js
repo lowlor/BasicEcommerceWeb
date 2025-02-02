@@ -4,7 +4,9 @@ import { fetchCart} from "../datas/carts.js";
 import { verifyAuth } from "./utils/auth.js";
 let html ='';
 
-const initial =  async (userID) => {
+const initial =  async (userID,username) => {
+    document.querySelector('.userInfo').innerHTML = "Welcome back..."+username;
+
     const cart = await fetchCart(userID);
     document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
 
@@ -139,7 +141,7 @@ const loginAuth = async()=>{
         console.log('goto main');
         console.log(isAuth.info);
         
-        initial(isAuth.info.id);
+        initial(isAuth.info.id,isAuth.info.username);
     }else{
         //window.location.href = "loginPage.html";
     }

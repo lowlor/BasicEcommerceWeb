@@ -4,7 +4,9 @@ import { verifyAuth } from "./utils/auth.js";
 const url = new URL(window.location.href);
 
 
-const initial = async (cusId)=>{
+const initial = async (cusId,username)=>{
+    document.querySelector('.userInfo').innerHTML = "Welcome back..."+username;
+
     const order = await getOrder(url.searchParams.get('orderId'),cusId);
     console.log(order);
     
@@ -30,7 +32,7 @@ const loginAuth = async()=>{
         console.log(isAuth.info);
         console.log(isAuth.info.id);
         
-        initial(isAuth.info.id);
+        initial(isAuth.info.id,isAuth.info.username);
     }else{
         window.location.href = "loginPage.html";
     }

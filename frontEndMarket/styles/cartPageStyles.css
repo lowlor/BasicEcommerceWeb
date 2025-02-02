@@ -1,13 +1,14 @@
 body{
-    font-family: "Montserrat", sans-serif;
+    font-family: "Roboto", serif;
     margin: 0;
+    color: #6D1058;
     padding: 0;
     background-color: lightgrey;
 }
 
 .containerHead{
     padding: 12px 10px;
-    background-color: green;
+    background-color: #AAAACC;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -20,26 +21,6 @@ h1,h2,h3,p{
     padding: 0;
 }
 
-.containerSearch{
-    display: flex;
-    gap: 0;
-}
-
-.search, .searchBox{
-    border: 0;
-    padding: 10px;
-}
-
-.search{
-    color: #fff;
-    background-color: #000;
-
-}
-
-.searchBox{
-    max-width: 300px;
-    width: 100px;
-}
 
 .containerCart{
     display: flex;
@@ -135,4 +116,32 @@ h1,h2,h3,p{
 
 .quantity-input, .save-quantity-link{
     display: none;
+}
+
+.leftSection{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.barBtn{
+    font-family: "Roboto", serif;
+    padding: 7px 5px ;
+    color: #fff;
+    background-color: #6D1058;
+    border: 1px solid #AAAACC;
+    border-radius: 8px;
+    font-weight: 300;
+    transition: .5s;
+}
+
+.barBtn:hover{
+    background-color: #a86599;
+}
+.search:hover{
+    background-color: #a86599;
+}
+.userInfo{
+    font-size: 1.2rem;
 }
