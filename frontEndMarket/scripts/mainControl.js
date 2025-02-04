@@ -29,9 +29,7 @@ const initial = async(userId,username)=>{
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <button class="productBuy" data-product-id=${product.id}>put to cart</button>
-    
-                ${product.extraInfoHTML()}
+                <button class="productBuy" data-product-id=${product.id}>put to cart</button>    
             </div>
         `
     });

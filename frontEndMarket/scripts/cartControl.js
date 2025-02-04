@@ -1,7 +1,6 @@
 import { updateOrderSection } from "./orderSection.js";
 import { updatePrice } from "./paymentSection.js";
-import '../datas/cart-class.js';
-import { verifyAuth } from "./utils/auth.js";
+import { logout, verifyAuth } from "./utils/auth.js";
 
 
 const loginAuth = async()=>{
@@ -19,7 +18,19 @@ const loginAuth = async()=>{
         document.querySelector('.userInfo').innerHTML = "Welcome back..."+isAuth.info.username;
         await updateOrderSection(isAuth.info.id);
         await updatePrice(isAuth.info.id);
+
+        document.querySelector('#logOutBtn').addEventListener('click',async ()=>{
+                const logoutOk = await logout();
+                console.log('go log out');
+                
+                if (logoutOk) {
+                    alert('log out complete');
+                    window.location.href = 'loginPage.html';
+                }else{
+                    alert('log out error');
+                }
+        })
     }else{
-        //window.location.href = "loginPage.html";
+        window.location.href = "loginPage.html";
     }
 })();

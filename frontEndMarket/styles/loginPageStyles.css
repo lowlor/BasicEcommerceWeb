@@ -1,22 +1,81 @@
 .loginContainer{
-    background-color: lightgrey;
-    height: 300px;
-    width: 200px;
+    border: 2px solid #6D1058;
+    border-radius: 20px;
+    background-color: #AAAACC;
+    height: 350px;
+    width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
 
     
 }
 
+.loginSection, .registerSection{
+    width: 100%;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.registerSection{
+    width: 100%;
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 12px;
+}
+
+h1,h3{
+    margin: 0;
+    padding: 0;
+}
+
+.inputBox{
+    padding: 10px 10px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.5s;
+    border: 2px solid #ccc;
+
+}
+
+.inputBox:focus{
+    border: 2px solid #6D1058;
+}
+
+input, button{
+    font-family: "Roboto", serif;
+}
+.loginBtn, .registerBtn{
+    margin-top: 6px;
+    padding: 5px 12px;
+    border: 0;
+    transition: 0.5s;
+    border-radius: 16px;
+    background-color: #ffffff;
+}
 body{
+    font-family: "Roboto", serif;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    
+    margin: 0;
+    color: #fff;
+    height: 100vh;
 
+}
+
+.loginBtn:hover, .registerBtn:hover{
+    background-color: #6D1058;
+    color: #ffffff;
 }

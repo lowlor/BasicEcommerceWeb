@@ -1,22 +1,62 @@
 .loginContainer{
-    background-color: lightgrey;
+    border: 2px solid #6D1058;
+    border-radius: 20px;
+    background-color: #AAAACC;
     height: 300px;
-    width: 200px;
-    display: flex;
+    width: 500px;
+
+    display: flex;    
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
-
-    
+    gap: 15px;
 }
 
+
+h1{
+    margin: 0;
+    padding: 0;
+}
+
+.inputBox{
+    padding: 10px 10px;
+    border: 0;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.5s;
+    border: 2px solid #ccc;
+
+}
+
+.inputBox:focus{
+    border: 2px solid #6D1058;
+}
+
+input, button{
+    font-family: "Roboto", serif;
+}
+.registerBtn{
+    margin-top: 6px;
+    padding: 5px 12px;
+    border: 0;
+    transition: 0.5s;
+    border-radius: 16px;
+    background-color: #ffffff;
+}
 body{
+    font-family: "Roboto", serif;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    
+    margin: 0;
+    color: #fff;
+    height: 100vh;
 
+}
+
+.registerBtn:hover{
+    background-color: #6D1058;
+    color: #ffffff;
 }

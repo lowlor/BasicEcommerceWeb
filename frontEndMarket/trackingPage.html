@@ -12,7 +12,9 @@
 </head>
 <body>
     <div class="containerHead">
-        <p class="userInfo">Welcome back...</p>
+        <a href="mainPage.html" style="text-decoration:none"> 
+            <p class="userInfo">Welcome back...</p>
+        </a>
         <div class="leftSection">
             <button class="barBtn" id="logOutBtn">Log out</button>    
             <a href="orderPage.html">
@@ -27,40 +29,9 @@
         </div>
     </div>
     <div class="bodyContainer">
-        <h1>Tracking</h1>
+        <h1 id="topicHeader">Tracking</h1>
         <div class="trackingContainer">
-            <div class="trackingHeadContainer">
-                <h2 class="statusText">Delivering</h2>
-                <div class="trackingText2">
-                    <h2 class="orderNum">Order number : 1</h2>
-                    <h2 class="deliverTime">Estimated Delivery Time : 23 May 2034</h3>    
-                </div>    
-            </div>
-            <div class="deliveryVisual">
-                <div class="node"></div>
-                <div class="line"></div>
-                <div class="node"></div>
-                <div class="line"></div>
-                <div class="node"></div>
-            </div>
-            <div class="deliveryVisualText">
-                <div class="nodeText">Packing</div>
-                <div class="space"></div>
-                <div class="nodeText">Delivering</div>
-                <div class="space"></div>
-                <div class="nodeText">Delivered</div>
-            </div>
             
-            <div class="productContainer">
-                <img class="productImg" src="/images/pixel.jpg" alt="">
-                <div class="productText">
-                    <h3 class="productName">Pixel</h3>
-                    <div class="productTextSecondary">
-                        <p class="quantityText">Quantity : 12</p>
-                        <p class="priceText"><i class="fa-solid fa-dollar"></i>20000</p>        
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

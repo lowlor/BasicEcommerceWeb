@@ -1,7 +1,7 @@
 import { getProduct } from "../datas/products.js";
 import { getOrder } from "../datas/order.js";
 import { fetchCart } from "../datas/carts.js";
-import { verifyAuth } from "./utils/auth.js";
+import { logout, verifyAuth } from "./utils/auth.js";
 const url = new URL(window.location.href);
 
 async function initial(customerId,username){
@@ -95,6 +95,18 @@ async function initial(customerId,username){
     }
 
     document.querySelector(".trackingContainer").innerHTML = html;
+
+    document.querySelector('#logOutBtn').addEventListener('click',async ()=>{
+        const logoutOk = await logout();
+        console.log('go log out');
+        
+        if (logoutOk) {
+            alert('log out complete');
+            window.location.href = 'loginPage.html';
+        }else{
+            alert('log out error');
+        }
+    })
 
     changeStatusDisplay(order.status);
 

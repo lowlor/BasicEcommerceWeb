@@ -787,10 +787,18 @@ app.post('/api/cart/addProduct/:id',(req,res)=>{
         })
     })
 })
-app.delete('/api/cartDetail/:id', (req,res)=>{
-    const cartDetailId = req.params.id;
+app.delete('/api/cartDetail/:id&:cid', (req,res)=>{
+    console.log('go to delete roduct from cart');
+    
+    
+    const productId = req.params.id;
+    const cartId = req.params.cid;
 
-    connection.query('DELETE FROM `cartdetail` WHERE id = ?', [cartDetailId],(err,result,field)=>{
+    console.log(productId);
+    console.log(cartId);
+    
+    
+    connection.query('DELETE FROM `cartdetail` WHERE cartId = ? and productId = ?', [cartId,productId],(err,result,field)=>{
         if (err) {
             return res.status(201).send({
                 status:0,

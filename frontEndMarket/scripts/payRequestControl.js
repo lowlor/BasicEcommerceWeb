@@ -1,6 +1,5 @@
 import { getOrder } from "../datas/order.js";
-import { addSlip } from "../datas/slips.js";
-import { verifyAuth } from "./utils/auth.js";
+import { verifyAuth, logout } from "./utils/auth.js";
 const url = new URL(window.location.href);
 
 
@@ -12,11 +11,29 @@ const initial = async (cusId,username)=>{
     
     document.querySelector(".ConfirmBtn").addEventListener('click',()=>{
         const fileToPut = document.querySelector('#slipInput').files[0];
-        console.log(fileToPut);
+        console.log(fileToPut.type);
+
+        if(fileToPut.type == 'image/png'){
+            order.changeSlip(fileToPut)
+            order.changePayStatus(1);
+    
+        }else{
+            alert(`Wrong file's name extension. We only accept png file`)
+        }
         
-        order.changeSlip(fileToPut)
-        order.changePayStatus(1);
         //window.location.href = "orderPage.html";
+    })
+
+    document.querySelector('#logOutBtn').addEventListener('click',async ()=>{
+        const logoutOk = await logout();
+        console.log('go log out');
+        
+        if (logoutOk) {
+            alert('log out complete');
+            window.location.href = 'loginPage.html';
+        }else{
+            alert('log out error');
+        }
     })
     
 }

@@ -50,6 +50,7 @@ h1,h2,h3,p{
 
 .trackingHeadContainer{
     margin: 0 5px;
+    
 }
 
 .deliveryVisual{
@@ -59,6 +60,11 @@ h1,h2,h3,p{
     justify-content: center;
     align-items: center;
     
+}
+
+#topicHeader{
+    margin-top: 5px;
+    margin-left: 12px;
 }
 
 .deliveryVisualText{

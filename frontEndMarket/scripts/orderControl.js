@@ -1,7 +1,7 @@
 import { fetchOrders} from "../datas/order.js";
 import { getProduct, products } from "../datas/products.js";
 import { fetchCart} from "../datas/carts.js";
-import { verifyAuth } from "./utils/auth.js";
+import { logout, verifyAuth } from "./utils/auth.js";
 let html ='';
 
 const initial =  async (userID,username) => {
@@ -24,7 +24,7 @@ const initial =  async (userID,username) => {
         <div class="orderContainer">
             <div class="orderContainerText">
                     <h2 class="orderId">ID : ${order.id} ${order.status}</h2>
-                    <h3 class="sumTotal">Sum Total : ${order.getTotalCost()} </h2>
+                    <h3 class="sumTotal">Total Price : ${order.getTotalCost()} <i class="fa-solid fa-dollar"></i></h2>
             </div>
             
             <div class="orderItems">
@@ -45,20 +45,20 @@ const initial =  async (userID,username) => {
         
         if(order.status === "Waiting Comfirming Payment" & order.payStatus===0){
                 
-            return `<div id="sendSlip${order.id}">
+            return `<div class="dynamicOrderInfo" id="sendSlip${order.id}">
                         <a href=payRequestPage.html?orderId=${order.id}>
                             <button class="checkStatus">Send Request</button>    
                         </a>
                     </div>`;        
         
         }else if(order.payStatus===1 & order.status === "Waiting Comfirming Payment"){
-            return `<div id="WaitingForOk">
+            return `<div class="dynamicOrderInfo" id="WaitingForOk">
                 <p><Waiting for Accept/p>
             </div>`;
         }else{
             console.log('enter this');
             
-            return `<div id="trackDelivery${order.id}">
+            return `<div class="dynamicOrderInfo" id="trackDelivery${order.id}">
                 <p class="deliveryDate">Estimated Delivery : ${order.estimatedDeliveryTime}</p>
                 <a href=trackingPage.html?orderId=${order.id}>
                     <button class="checkStatus">check</button>    
@@ -78,55 +78,34 @@ const initial =  async (userID,username) => {
                 const product = await getProduct(item.productId)
                 console.log(product);
                 
-                if(status === "Waiting Comfirming Payment" & payStatus===0){
-                    console.log("enter if one");
-
-                    html += `
+                html += `
                 <div class="orderItem">
                     <img class="itemImg" src="${product.img}" alt="">
                     <div class="orderItemText">
                         <h3 class="productName">${product.name}</h3>
-                        <p>Price : ${product.getPrice()}</p>
+                        <p>Price : ${product.getPrice()}<i class="fa-solid fa-dollar"></i></p>
                         <div class="orderItemTextDiv">
                         </div>
                     </div>
                  </div>  
                 `
-              
-                }else if(payStatus===1){
-                    console.log('enter');
-                    html += `
-                <div class="orderItem">
-                    <img class="itemImg" src="${product.img}" alt="">
-                    <div class="orderItemText">
-                        <h3 class="productName">${product.name}</h3>
-                        <p>Price : ${product.getPrice()}</p>
-                        <div class="orderItemTextDiv">
-                        </div>
-                    </div>
-                 </div>  
-                `
-                }else{
-
-                    console.log("enter bottom----------------------");
-                    html += `
-                <div class="orderItem">
-                    <img class="itemImg" src="${product.img}" alt="">
-                    <div class="orderItemText">
-                        <h3 class="productName">${product.name}</h3>
-                        <p>Price : ${product.getPrice()}</p>
-                        <div class="orderItemTextDiv">
-                        </div>
-                    </div>
-                 </div>  
-                `
-                    
-                }
+            
                 }
         
         return html;
     }
     
+    document.querySelector('#logOutBtn').addEventListener('click',async ()=>{
+            const logoutOk = await logout();
+            console.log('go log out');
+            
+            if (logoutOk) {
+                alert('log out complete');
+                window.location.href = 'loginPage.html';
+            }else{
+                alert('log out error');
+            }
+        })
     
     document.querySelector('.orderContainers').innerHTML = html;
     

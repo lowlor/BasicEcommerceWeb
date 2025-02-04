@@ -78,7 +78,7 @@ export async function updateOrderSection(userId){
 
             console.log(cart);
             console.log("deleteetetete");
-            updatePrice(userId);
+            await updatePrice(userId);
         })
     })
 

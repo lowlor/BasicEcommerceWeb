@@ -82,7 +82,9 @@ class Cart{
 
     async removeProduct(productId){
         try {
-            const {data} = await axios.delete(`http://localhost:5000/api/cartDetail/${productId}`);
+            console.log(this.id, productId, ' this is cart id ------------------------------------');
+            
+            const {data} = await axios.delete(`http://localhost:5000/api/cartDetail/${productId}&${this.id}`);
             if(data.status){
                 return data;
             }else{

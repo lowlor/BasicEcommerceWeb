@@ -5,11 +5,7 @@ export async function getProduct(productId){
         const {data} = await axios.get(`http://localhost:5000/api/product/${productId}`);
         console.log(data.info)
         if(data.status){
-                if(data.info.type === 'Phone'){
-                    return new Phone(data.info);
-                }else if(data.info.type=== 'Tablet'){
-                    return new Tablet(data.info);
-                }
+                return new Product(data.info);
                 
                 
         }else{
@@ -47,38 +43,6 @@ class Product{
     }
 }
 
-class Tablet extends Product{
-    connectionType;
-
-    constructor(productDetails){
-        super(productDetails);
-        this.connectionType = productDetails.connectionType;
-    }
-
-    extraInfoHTML(){
-        return `
-            <p>${this.connectionType}</p>
-            <p>warranty: 2 year</p>
-        `;
-    }
-}
-
-class Phone extends Product{
-    connection;
-
-    constructor(productDetails){
-        super(productDetails);
-        this.connection = productDetails.connection;
-    }
-
-    extraInfoHTML(){
-        return `
-            <p>${this.connection}</p>
-            <p>warranty: 1 year</p>
-
-        `;
-    }
-}
 
 export const products = async ()=>{
     try {
@@ -86,12 +50,7 @@ export const products = async ()=>{
         console.log(data.info)
         if(data.status){
             return data.info.map((productDetails)=>{
-                if(productDetails.type === 'Phone'){
-                    return new Phone(productDetails);
-                }else if(productDetails.type=== 'Tablet'){
-                    return new Tablet(productDetails);
-                }
-                
+                return new Product(productDetails);
             });
         }else{
             return 0;

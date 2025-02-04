@@ -35,6 +35,8 @@ h1,h2,h3,p{
     display: flex;
     flex-direction: column;
 
+    border-radius: 20px;
+
 }
 
 .orderContainerText{
@@ -75,6 +77,12 @@ h1,h2,h3,p{
 
 }
 
+.dynamicOrderInfo{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    gap: 5px;
+}
 .productName{
     margin-bottom: 15px;
 
@@ -87,16 +95,17 @@ h1,h2,h3,p{
 
 }
 
-.barBtn{
+.barBtn, .checkStatus{
     font-family: "Roboto", serif;
     padding: 7px 5px ;
     color: #fff;
     background-color: #6D1058;
     border: 1px solid #AAAACC;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 300;
     transition: .5s;
 }
+
 
 .barBtn:hover{
     background-color: #a86599;
@@ -104,6 +113,11 @@ h1,h2,h3,p{
 .search:hover{
     background-color: #a86599;
 }
+.checkStatus:hover{
+    background-color: #a86599;
+}
+
+
 .userInfo{
     font-size: 1.2rem;
 }

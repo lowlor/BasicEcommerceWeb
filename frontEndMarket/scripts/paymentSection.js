@@ -105,18 +105,6 @@ export async function updatePrice(userID){
     
 
     document.querySelector('.conclusionBtn').addEventListener('click',()=>{
-        //const response = await fetch('https:\\supersimplebackend.dev/orders', {
-        //    method: 'POST',
-        //    headers:{
-        //        'Content-Type' : 'application/json'
-        //    },
-        //    body : JSON.stringify({
-        //        cart : cart
-        //    })
-        //});
-
-        //const order = await response.json()
-        //console.log(order);
         let cartToPut = [];
         let countId =1;
         cart.products.forEach((item)=>{            
