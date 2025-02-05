@@ -27,6 +27,11 @@ h1,h2,h3,p{
     gap: 0;
 }
 
+.containerCart{
+    display: flex;
+    align-items: center;
+}
+
 
 .productImg{
     height: 120px;

@@ -119,7 +119,11 @@ app.post('/api/auth',(req,res)=>{
                 if(match){
                     console.log('dededededeeeeeeeeeeeeeeeeeeeeeeeeeeeee',result[0]);
             
-                    req.session.user = { id : result[0].id , username : data.username};
+                    req.session.user = { 
+                        id : result[0].id ,
+                        username : data.username,
+                        role : result[0].role
+                    };
 
                     console.log(req.session);
             
@@ -441,52 +445,67 @@ app.post('/api/order', async (req,res)=>{
 
     console.log(data);
 
-    connection.query(
-        `INSERT INTO \`order\` (id,userId, orderTime, orderTimeDate, estimatedDeliveryTime, estimatedDeliveryTimeDate, totalCostCent, status, payStatus)
-         VALUES (?,?,?,?,?,?,?,?,?)`,
-        [data.id,data.userId,data.orderTime,data.orderTimeDate,data.estimatedDeliveryTime,data.estimatedDeliveryTimeDate,data.totalCostCent,data.status,data.payStatus],
-        (err,result,field)=>{
-            if (err){
-                console.log(err);
-                return res.status(201).send({status:0,
-                    info:'error occurred'
-                })
-            }
-            console.log(result);
-            console.log('update complete');
-            const promises = data.products.map((current)=>{
-                return new Promise((resolve,reject)=>{
-                    connection.query(`INSERT INTO \`orderdetail\`(orderId, id, productId, quantity)
-                         VALUES 
-                         (?,?,?,?)`,
-                        [data.id,current.id,current.productId,current.quantity],
-                    (err,result,field)=>{
-                        if(err){
-                            reject(err);
-                        }else{
-                            resolve();
-                        }
+    connection.query('SELECT COUNT(*) AS count FROM `order`',(err,result,filed)=>{
+        if (err){
+            console.log('error in count total order');
+            return res.status(201).send({
+              status:0,
+              info:"error in backend"  
+            })
+        }else{
+            const idToinsert ='o'+(result[0].count+1).toString();
+            connection.query(
+                `INSERT INTO \`order\` (id,userId, orderTime, orderTimeDate, estimatedDeliveryTime, estimatedDeliveryTimeDate, totalCostCent, status, payStatus)
+                 VALUES (?,?,?,?,?,?,?,?,?)`,
+                [idToinsert,data.userId,data.orderTime,data.orderTimeDate,data.estimatedDeliveryTime,data.estimatedDeliveryTimeDate,data.totalCostCent,data.status,data.payStatus],
+                (err,totalCount,field)=>{
+                    if (err){
+                        console.log(err);
+                        return res.status(201).send({status:0,
+                            info:'error occurred'
+                        })
+                    }else{
+                        
+                    }
+                    console.log(result);
+                    console.log('update complete');
+                    const promises = data.products.map((current)=>{
+                        return new Promise((resolve,reject)=>{
+                            connection.query(`INSERT INTO \`orderdetail\`(orderId, id, productId, quantity)
+                                 VALUES 
+                                 (?,?,?,?)`,
+                                [data.id,current.id,current.productId,current.quantity],
+                            (err,result,field)=>{
+                                if(err){
+                                    reject(err);
+                                }else{
+                                    resolve();
+                                }
+                            })
+                        })
                     })
-                })
-            })
-
-            Promise.all(promises)
-            .then(() => {
-                res.status(200).send({
-                    status: 1,
-                    info: 'Data successfully inserted',
-                });
-            })
-            .catch((error) => {
-                console.error(error);
-                res.status(500).send({
-                    status: 0,
-                    info: 'Error occurred while inserting into orderdetail table',
-                });
-            });
         
-        })
+                    Promise.all(promises)
+                    .then(() => {
+                        res.status(200).send({
+                            status: 1,
+                            info: 'Data successfully inserted',
+                        });
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        res.status(500).send({
+                            status: 0,
+                            info: 'Error occurred while inserting into orderdetail table',
+                        });
+                    });
+                
+                })
+        }
+    })
+    
 
+    
 
     
 })

@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     color: #6D1058;
-    background-color: lightgrey;
+    background-color: #fff;
 
 }
 
@@ -27,9 +27,9 @@ h1,h2,h3,p{
     gap: 0;
 }
 
-.search, .searchBox{
-    border: 0;
-    padding: 10px;
+.containerCart{
+    display: flex;
+    align-items: center;
 }
 
 .productImg{
@@ -48,7 +48,7 @@ h1,h2,h3,p{
     padding: 7px 5px ;
     color: #fff;
     background-color: #6D1058;
-    border: 1px solid #AAAACC;
+    border: 0;
     border-radius: 8px;
     font-weight: 300;
     transition: .5s;
@@ -62,4 +62,50 @@ h1,h2,h3,p{
 }
 .userInfo{
     font-size: 1.2rem;
+}
+
+#qrImg{
+    margin: 20px 0;
+
+
+    width: 350px;
+}
+
+.requestContainer{
+    height: 800px;
+
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.evidenceContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    background-color: #bea1b8;
+    border: 0;
+    border-radius: 15px;
+    padding: 20px 30px;
+    gap: 5px;
+
+}
+
+.ConfirmBtn{
+    font-family: "Roboto", serif;
+    padding: 10px 20px ;
+    color: #fff;
+    background-color: #6D1058;
+    border: 0;
+    border-radius: 20px;
+    font-weight: 300;
+    transition: .5s;
+}
+
+.ConfirmBtn:hover{
+    background-color: #a86599;
 }

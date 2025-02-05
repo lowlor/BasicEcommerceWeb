@@ -147,12 +147,8 @@ export const fetchOrders = async (userID)=>{
 }
 
 export async function addOrder(totalCostCent,cart,userID,estimatedDeliveryTime,estimatedDeliveryTimeDate){
-
-    const a = await getTotalOrder();
-    const id = (a+1).toString();
     try {
         const {data} =  await axios.post("http://localhost:5000/api/order",{
-            id: id,
             userId : userID,
             orderTime : getDateNow(),
             orderTimeDate : getDateNowDateFormat(),

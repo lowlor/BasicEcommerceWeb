@@ -31,12 +31,15 @@
     </div>
 
     <div class="requestContainer">
-        <h2>Scan this</h2>
-        <img src="images/qrcodePromptPay.webp" alt="qrcodeForPayment">
-        <p>Paid?</p>
-        <p>Pick your paid slip</p>
-        <input type="file" name="" id="slipInput">
-        <button class="ConfirmBtn">Sent</button>
+        <h2>Please complete your purchase by scan qr code below and pay</h2>
+        <img id='qrImg' src="images/qrcodePromptPay.webp" alt="qrcodeForPayment">
+
+        <div class="evidenceContainer">
+            <p>Please send your evidence of payment</p>
+            <input type="file" name="" id="slipInput">
+            <button class="ConfirmBtn">Sent</button>
+    
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

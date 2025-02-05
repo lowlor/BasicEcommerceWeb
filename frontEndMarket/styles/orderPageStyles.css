@@ -117,6 +117,10 @@ h1,h2,h3,p{
     background-color: #a86599;
 }
 
+.containerCart{
+    display: flex;
+    align-items: center;
+}
 
 .userInfo{
     font-size: 1.2rem;

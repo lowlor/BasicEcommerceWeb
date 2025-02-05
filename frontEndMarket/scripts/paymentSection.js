@@ -117,6 +117,7 @@ export async function updatePrice(userID){
         })
         addOrder(totalItemPrice+(totalItemPrice*0.07)+shipping,cartToPut,userID,getDate(cost.time), getDateDateFormat(cost.time));
 
-        alert("Complete! Please proceed to order tab to pay your order");
+        alert("Complete!");
+        
     })
 }

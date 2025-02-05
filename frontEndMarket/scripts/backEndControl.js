@@ -212,7 +212,12 @@ const loginAuth = async()=>{
     const isAuth = await loginAuth();
     if(isAuth.status){
         
-        initial();
+        if(isAuth.info.role == 'admin'){
+            initial();
+        }else{
+            alert('you have no permit to access this sector')
+            window.location.href = "../mainPage.html";
+        }
     }else{
         window.location.href = "loginPage.html";
     }
