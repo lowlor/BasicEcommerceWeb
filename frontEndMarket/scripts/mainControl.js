@@ -1,21 +1,21 @@
 import {fetchCart} from "../datas/carts.js";
 import { formatCurrency } from "./utils/money.js";
-import { products } from "../datas/products.js";
+import { getProductByKeyword, products } from "../datas/products.js";
 import { logout, verifyAuth } from "./utils/auth.js";
 
 
 
-const initial = async(userId,username)=>{
+const initial = async(userId,username, productToPut)=>{
     document.querySelector('.userInfo').innerHTML = "Welcome back..."+username
     let productHtml = "";
     let cartNumber = document.querySelector(".cartNumber");
     let cart = await fetchCart(userId);
     console.log(cart);
     
-    const productList = await products();
+    const productList = productToPut;
     let quantityNumber = 0;
     console.log(productList);
-    productList.forEach((product)=>{
+    for(const product of productList){
         console.log(product);
         productHtml += `
             <div class="product">
@@ -32,7 +32,7 @@ const initial = async(userId,username)=>{
                 <button class="productBuy" data-product-id=${product.id}>put to cart</button>    
             </div>
         `
-    });
+    };
     
     document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
     
@@ -52,15 +52,21 @@ const initial = async(userId,username)=>{
                 await cart.addProduct(checkName, selectedValue);
     
                 cart = await fetchCart(userId);
-                console.log('added new product');
-                
-                console.log();
-                
+                console.log('added new product');                
                 document.querySelector('.cartNumber').innerHTML = cart.getAllCartQuantity();
                 
 
             });
         });
+
+    document.querySelector('.search').addEventListener('click',async()=>{
+        const keyword = document.querySelector('.searchBox').value;
+        const productList = await getProductByKeyword(keyword);
+        console.log(productList);
+        
+        initial(userId,username,productList);
+        
+    })
     
     document.querySelector('#logOutBtn').addEventListener('click',async ()=>{
         const logoutOk = await logout();
@@ -86,7 +92,10 @@ const loginAuth = async()=>{
         console.log('goto main');
         console.log(isAuth.info);
         
-        initial(isAuth.info.id,isAuth.info.username);
+        const productList = await products();
+        
+        
+        initial(isAuth.info.id,isAuth.info.username,productList);
     }else{
         window.location.href = "loginPage.html";
     }

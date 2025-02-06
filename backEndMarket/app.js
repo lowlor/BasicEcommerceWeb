@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const crypto = require('crypto');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -355,6 +356,28 @@ app.get('/api/product/:id',(req,res)=>{
     })
 })
 
+app.get('/api/product/search/:keyword',(req,res)=>{
+    const data = '%'+ req.params.keyword + '%';
+    
+    connection.query('SELECT * FROM `product` WHERE name LIKE ?',[data],(err,result,field)=>{
+        if (err){
+            return res.status(201).send({
+                status:0,
+                info:'error'
+            })
+        }else{
+            console.log('------------------------------------product search------------------------------------------------');
+            console.log(result);
+            
+            return res.status(200).send({
+                status:1,
+                info:result
+            })
+        }
+    })
+})
+
+
 app.post('/api/product/add',(req,res)=>{
     console.log('front end Use api add Product');
     
@@ -474,7 +497,7 @@ app.post('/api/order', async (req,res)=>{
                             connection.query(`INSERT INTO \`orderdetail\`(orderId, id, productId, quantity)
                                  VALUES 
                                  (?,?,?,?)`,
-                                [data.id,current.id,current.productId,current.quantity],
+                                [idToinsert,current.id,current.productId,current.quantity],
                             (err,result,field)=>{
                                 if(err){
                                     reject(err);
@@ -529,7 +552,7 @@ app.get('/api/order/:id',(req,res)=>{
         }
         console.log("this is result");
         
-        console.log(result);
+        console.log('555',result);
         
         console.log("this is result id");
         
@@ -537,20 +560,23 @@ app.get('/api/order/:id',(req,res)=>{
 
         const promise = await Promise.all(result.map((current)=>{
             return new Promise((resolve, reject) =>{
-                connection.query('SELECT * FROM `orderDetail` WHERE `orderId` = ?',[result[0].id],(err,resultDetail,field)=>{
-                    if (err){
-                        console.log(err);
-                        return reject(err);
-                    }else{
-                        console.log("defrgthy");
-                        console.log(resultDetail);
-                        
-                        return resolve({
-                                ...current,
-                                products : resultDetail  
-                            });
-                    }
-                })
+        
+                    connection.query('SELECT * FROM `orderDetail` WHERE `orderId` = ?',[current.id],(err,resultDetail,field)=>{
+                        if (err){
+                            console.log(err);
+                            return reject(err);
+                        }else{
+                            console.log("defrgthy");
+                            console.log(resultDetail);
+
+                            return resolve({
+                                    ...current,
+                                    products : resultDetail  
+                                });
+                        }
+                    
+                    })
+                
             })
         }))
 
@@ -780,32 +806,27 @@ app.post('/api/cart/addProduct/:id',(req,res)=>{
     const product = data.product;
 
     console.log(cartId, data, product);
+       
+    const idToinsert = crypto.randomUUID();
+    console.log('808', idToinsert);
     
-    connection.query('SELECT COUNT(*) AS count FROM `cartDetail`', (err,result,field)=>{
-        if( err){
-            console.error('error in counting');
-            return res.status(500).send({
+    connection.query('INSERT INTO `cartdetail`(`id`, `cartId`, `productId`, `quantity`) VALUES (?,?,?,?)', [idToinsert, cartId, product.id, product.quantity],(err,result,field)=>{
+        if (err) {
+            console.log(err);
+            
+            return res.status(201).send({
                 status:0,
-                info:"error in counting"
-            });
-        }
-
-        const idToinsert ='cd'+(result[0].count+1).toString();
-        
-        connection.query('INSERT INTO `cartdetail`(`id`, `cartId`, `productId`, `quantity`) VALUES (?,?,?,?)', [idToinsert, cartId, product.id, product.quantity],(err,result,field)=>{
-            if (err) {
-                return res.status(201).send({
-                    status:0,
-                    info:'error in insert cart detail'
-                })
-            }
-            return res.status(200).send({
-                status:1,
-                info:'update complete'
+                info:'error in insert cart detail'
             })
+        }
+        return res.status(200).send({
+            status:1,
+            info:'update complete'
         })
     })
+    
 })
+
 app.delete('/api/cartDetail/:id&:cid', (req,res)=>{
     console.log('go to delete roduct from cart');
     

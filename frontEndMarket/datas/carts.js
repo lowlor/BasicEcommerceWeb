@@ -64,13 +64,18 @@ class Cart{
 
     //complete implement
     async addProductData(newProduct){
+        console.log(newProduct);
         try {
             const {data} = await axios.post(`http://localhost:5000/api/cart/addProduct/${this.id}`,{
                 product : newProduct
             });
             if(data.status){
+                console.log(data);
+                
                 return data;
             }else{
+                console.log(data);
+
                 return 0;
             }
         } catch (error) {
@@ -99,8 +104,9 @@ class Cart{
 
     async addProduct(checkName, selectedValue) {
         let flag = 1;
-    
+
         console.log(this.products);
+        
         
         //find product if found product in cart
         for (const product of this.products) {
@@ -120,6 +126,8 @@ class Cart{
     
         //if not create new product in cart
         if (flag) {
+            console.log('go get new product');
+            
             await this.addProductData({
                 id: checkName,
                 quantity: selectedValue

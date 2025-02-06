@@ -18,6 +18,26 @@ export async function getProduct(productId){
     }
 }
 
+export async function getProductByKeyword(keyword){
+    try {
+        const {data} = await axios.get(`http://localhost:5000/api/product/search/${keyword}`);
+        console.log(data)
+        if(data.status){;
+            
+            return data.info.map((productDetails)=>{
+                return new Product(productDetails);
+            });
+        }else{
+            return 0;
+        }
+    } catch (error) {
+        alert('error');
+        console.log(error);
+        return 0;
+    }
+}
+
+
 
 class Product{
     id;

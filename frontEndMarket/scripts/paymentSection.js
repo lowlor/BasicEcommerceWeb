@@ -115,6 +115,8 @@ export async function updatePrice(userID){
             })
             countId++;
         })
+        console.log(totalItemPrice+(totalItemPrice*0.07)+shipping,cartToPut,userID,getDate(cost.time), getDateDateFormat(cost.time));
+
         addOrder(totalItemPrice+(totalItemPrice*0.07)+shipping,cartToPut,userID,getDate(cost.time), getDateDateFormat(cost.time));
 
         alert("Complete!");
